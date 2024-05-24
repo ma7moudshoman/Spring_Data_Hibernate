@@ -16,7 +16,35 @@ public static void main(String[]args)  {
 	 
     Session session=factory.getCurrentSession();
 
+    long id=4;
+    try {
+		session.beginTransaction();
+	Client client=	session.get(Client.class, id);
 	
+	
+		session.getTransaction().commit();
+	System.out.println(client.getFullName() + " " + client.getAddress());
+    } catch (Exception e) {
+		System.out.println(e.toString());
+		// TODO: handle exception
+	}finally {
+		session.close();
+	}      
+    
+}
+/*
+ * Client client1=new Client("MAhmoud", 26, "Alix");
+  // client1.setId((long) 1);
+   
+
+   Client client2=new Client("Mohand", 18, "Cairo");
+  //client2.setId((long) 2);
+
+  Client client3=new Client("Masen", 5, "here");
+ //client3.setId((long) 3);
+  Client client4=new Client("sara", 62, "there");
+
+ * */
 	
 	/*String Url="jdbc:mysql://localhost:3306/employee?useSSL=false";
 	String username="root";
@@ -34,4 +62,4 @@ public static void main(String[]args)  {
 	}
 	*/
 }
-}
+
