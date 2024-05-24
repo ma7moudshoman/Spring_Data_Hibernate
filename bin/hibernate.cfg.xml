@@ -1,34 +1,30 @@
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd ">
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
-        
-< hibernate-configuration>
-
-    <session-factory >
+<hibernate-configuration>
+    <session-factory>
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/employee</property>
         <property name="connection.username">root</property>
         <property name="connection.password">123456789</property>
 
-		<!-- create -->
-		<!-- update -->
-		<!-- create-drop -->
-		<property name="hbm2ddl.auto">update</property> 
-		
-        <!--Settings (pool)-->
+        <!-- create -->
+        <!-- update -->
+        <!-- create-drop -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Settings (pool) -->
         <property name="connection.pool_size">1</property>
 
-        <!-- dialect SQL -->
+        <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
-        <!-- show sql query -->
-        <property name="show_sql">true</property >
+        <!-- Show SQL query -->
+        <property name="show_sql">true</property>
 
-	<!-- current session  -->
-	<property name="current_session_context_class">thread</property >
- 
+        <!-- Current session context class -->
+        <property name="current_session_context_class">thread</property>
     </session-factory>
-
-</hibernate-configuration >
+</hibernate-configuration>
