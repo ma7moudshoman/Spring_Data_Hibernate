@@ -2,63 +2,54 @@ package Com.SpringData.Hibernate;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import Com.SpringData.Hibernate.model.Client;
 
 public class MainApp {
+	
+	
+	
 @SuppressWarnings("unchecked")
 public static void main(String[]args)  {
-	
 	SessionFactory factory=new Configuration()
+			
 			.configure("hibernate.cfg.xml")
 			.addAnnotatedClass(Client.class)
-			.buildSessionFactory();
-	
-	
-	
-    Session session=factory.getCurrentSession();
-
-    
-    /*
-    
-    
+			.buildSessionFactory();	
+        	 Session session=factory.getCurrentSession();
+       
+    /* 
      * start  s%
      * end with  %s
      * any     %s%
-     
-     
+         
      */
     
     
    int id = 1;
     try {
-    	
 		session.beginTransaction();
-		Query q =session .createQuery("select Max (id) from Client");
-		Query q1 =session .createQuery("select Min (id) from Client");
-		Query q2 =session .createQuery("select Sum (id) from Client");
-		Query q3 =session .createQuery("select Avg (age) from Client");
-		Query q4 =session .createQuery("select count (fullName) from Client");
-		Query q5 =session .createQuery("select count (distinct address) from Client");
-
 		
 		
+		Criteria c= session.createCriteria(Client.class);
+		List<Client>clients=c.list();
+		 	c.setProjection(Projections.min("id"));
+		System.out.println("min : " + clients.get(0));
 		
-		
-		System.out.println("Max : "+q.list().get(0));
-		System.out.println("min : "+q1.list().get(0));
-		System.out.println("sum : "+q2.list().get(0));
-		System.out.println("average : "+q3.list().get(0));
-		System.out.println("average : "+q4.list().get(0));
-		System.out.println("average : "+q5.list().get(0));
-
-		/*for(int i=0;i<clients.size();i++){
+	/*	for(int i=0;i<clients.size();i++){
 			System.out.println(clients.get(i).getAddress() +" "+ clients.get(i).getAge());
-		}
+		}*/
 		/*             Update 
 		 * session.createQuery("update Client set age=26 where id=1")
 		.executeUpdate();
@@ -121,6 +112,8 @@ public static void main(String[]args)  {
 			
 			
 		//       Update 
+		 * 
+		 */
 		/*Client client=new Client("soha", 25,"el shohada");
 		client.setId((long) 4);
 
@@ -141,7 +134,29 @@ public static void main(String[]args)  {
 		
 			*/
 
-	  
+	  /*//c .add(Restrictions.lt("id",(long) 3));    lis number
+		//c.add(Restrictions.between("id",(long) 2,(long) 4)); the number between first number and last number
+		//c.add(Restrictions.in("id",ids));
+		//c.add(Restrictions.isNotNull("address"));
+		  //	c.add(Restrictions.gt("id",(long) 3));      // big number 
+		//c.add(Restrictions.isEmpty("address"));
+         //c.add(Restrictions.eq("fullName","yasser"));
+//		c.add(Restrictions.like("fullName","a",MatchMode.END));
+		//c.add(Restrictions.like("fullName","a",MatchMode.START));
+//		c.add(Restrictions.like("fullName","a",MatchMode.ANYWHERE));
+	//	c.add(Restrictions.like("fullName","r",MatchMode.EXACT));
+
+	//	c.add(Restrictions.like("fullName","a",MatchMode.ANYWHERE));
+
+		
+	//	c.add(Restrictions.eq("fullName","yasser"));
+
+	//    and & or
+		Criterion c1 = Restrictions.eq("address", "Cairo");
+		Criterion c2 = Restrictions.eq("fullName", "Mohand ");
+ 		LogicalExpression or=Restrictions.and(c2, c1);
+		
+c.add(or);*/
     
 }
 /*
@@ -174,6 +189,28 @@ public static void main(String[]args)  {
 	} catch (SQLException e) {
 		System.out.println(e.toString());
 	}
+	
+	**********************************************
+		Query q =session .createQuery("select Max (id) from Client");
+		Query q1 =session .createQuery("select Min (id) from Client");
+		Query q2 =session .createQuery("select Sum (id) from Client");
+		Query q3 =session .createQuery("select Avg (age) from Client");
+		Query q4 =session .createQuery("select count (fullName) from Client");
+		Query q5 =session .createQuery("select count (distinct address) from Client");
+
+		
+		
+		
+		
+		System.out.println("Max : "+q.list().get(0));
+		System.out.println("min : "+q1.list().get(0));
+		System.out.println("sum : "+q2.list().get(0));
+		System.out.println("average : "+q3.list().get(0));
+		System.out.println("average : "+q4.list().get(0));
+		System.out.println("average : "+q5.list().get(0));
+
+	
+	 
 	*/
 }
 
