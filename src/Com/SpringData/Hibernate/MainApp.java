@@ -15,6 +15,8 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import Com.SpringData.Hibernate.model.Client;
+import Com.SpringData.Hibernate.model.Data;
+import Com.SpringData.Hibernate.model.person;
 
 public class MainApp {
 	
@@ -25,16 +27,11 @@ public static void main(String[]args)  {
 	SessionFactory factory=new Configuration()
 			
 			.configure("hibernate.cfg.xml")
-			.addAnnotatedClass(Client.class)
+			.addAnnotatedClass(person.class)
+			.addAnnotatedClass(Data.class)
 			.buildSessionFactory();	
         	 Session session=factory.getCurrentSession();
-       
-    /* 
-     * start  s%
-     * end with  %s
-     * any     %s%
-         
-     */
+    
     
     
    int id = 1;
@@ -42,15 +39,34 @@ public static void main(String[]args)  {
 		session.beginTransaction();
 		
 		
-		Criteria c= session.createCriteria(Client.class);
-		List<Client>clients=c.list();
-		 	c.setProjection(Projections.min("id"));
-		System.out.println("min : " + clients.get(0));
-		
-	/*	for(int i=0;i<clients.size();i++){
-			System.out.println(clients.get(i).getAddress() +" "+ clients.get(i).getAge());
-		}*/
-		/*             Update 
+		  } catch (Exception e) {
+		System.out.println(e.toString());
+		// TODO: handle exception
+	}finally {
+		session.close();
+	}  
+    
+}
+
+
+}
+    
+    
+    
+
+/* 
+ * start  s%
+ * end with  %s
+ * any     %s%
+ */
+    	 /*
+    	     * one to one 
+    	     * one to many
+    	     * many to one
+    	     * many to many
+    	     * */
+    
+    /*/*             Update 
 		 * session.createQuery("update Client set age=26 where id=1")
 		.executeUpdate();
 		
@@ -58,20 +74,7 @@ public static void main(String[]args)  {
 			System.out.println(clients.get(i).getAddress() +" "+ clients.get(i).getAge());
 		}*/
 		//System.out.println(client.getFullName() + " " + client.getAddress());
-    } catch (Exception e) {
-		System.out.println(e.toString());
-		// TODO: handle exception
-	}finally {
-		session.close();
-	}  
-    
-    
-    
-    
-    
-    
-    
-    
+  
     
 	/*Client clientsession.get(Client.class, id);
 	client.setFullName("ahmed");
@@ -158,7 +161,7 @@ public static void main(String[]args)  {
 		
 c.add(or);*/
     
-}
+
 /*
                 select
               
@@ -212,5 +215,5 @@ c.add(or);*/
 	
 	 
 	*/
-}
+
 
