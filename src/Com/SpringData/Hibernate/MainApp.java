@@ -2,6 +2,7 @@ package Com.SpringData.Hibernate;
 
 import java.util.List;
 
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,17 +15,45 @@ import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import com.mysql.cj.protocol.x.ContinuousOutputStream;
+
 import Com.SpringData.Hibernate.model.Client;
 import Com.SpringData.Hibernate.model.Data;
 import Com.SpringData.Hibernate.model.person;
 
 public class MainApp {
 	
-	
-	
+		
+		
+		
 @SuppressWarnings("unchecked")
 public static void main(String[]args)  {
-	SessionFactory factory=new Configuration()
+
+	
+	// first method 
+	
+		//calculator al=new Multiplication();
+		//System.out.println(al.calc(10, 15));
+	 	 
+	
+	
+	// second method    lambda 
+	
+	/*	calculator addition=( first, second) ->{
+			return		first*second;
+	
+		};
+		
+		System.out.println(addition.calc(14,45));
+*/
+
+
+
+
+
+
+
+SessionFactory factory=new Configuration()
 			
 			.configure("hibernate.cfg.xml")
 			.addAnnotatedClass(person.class)

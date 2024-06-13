@@ -22,10 +22,10 @@ public class Data {
     @Column(name="person_age")
     private String age;
 
-    @OneToOne
+   /* @OneToOne
     @JoinColumn(name="id_person")
     private person person;
-
+*/
 public Data(){
 
 }
