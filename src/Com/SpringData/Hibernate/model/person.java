@@ -1,6 +1,7 @@
 package Com.SpringData.Hibernate.model;
 
 import javax.annotation.processing.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class person {
 
 	
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.MERGE) // Refresh access all data from database
 	@JoinColumn(name = "data_id")
 	private Data data;
 	
@@ -35,6 +36,18 @@ public class person {
 	
 	
 	
+	public Data getData() {
+		return data;
+	}
+
+
+
+	public void setData(Data data) {
+		this.data = data;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

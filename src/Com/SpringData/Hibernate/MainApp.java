@@ -30,23 +30,7 @@ public class MainApp {
 public static void main(String[]args)  {
 
 	
-	// first method 
 	
-		//calculator al=new Multiplication();
-		//System.out.println(al.calc(10, 15));
-	 	 
-	
-	
-	// second method    lambda 
-	
-	/*	calculator addition=( first, second) ->{
-			return		first*second;
-	
-		};
-		
-		System.out.println(addition.calc(14,45));
-*/
-
 
 
 
@@ -63,10 +47,48 @@ SessionFactory factory=new Configuration()
     
     
     
-   int id = 1;
     try {
 		session.beginTransaction();
 		
+	/*	
+	  
+	  
+	    add row inside database  
+	  
+	  person person=new person();
+		person.setName("sara");
+		session.save(person);
+		
+		
+		Data data=new Data();
+		data.setAge("20");
+		session.save(data);
+		
+		person.setData(data);
+		
+		*/
+		
+		person person=new person();
+		person.setId(1);
+		person res = session.get(person.class, person.getId());
+		System.out.println("Name " + res.getName());
+		System.out.println("Age " + res.getData() .getAge() );
+		res.setName("Admed");
+		res.getData().setAge("23");
+	
+	/*	
+		Data d=new Data();
+		
+		p.setId(6);
+		d.setId(0);
+
+	  
+		/*Integer id =3;
+		session.delete(p);
+		session.delete(d);
+		//session.save(p);*/
+		//session.save(person);
+		session.getTransaction().commit();
 		
 		  } catch (Exception e) {
 		System.out.println(e.toString());
@@ -81,6 +103,49 @@ SessionFactory factory=new Configuration()
 }
     
     
+//first method 
+
+		//calculator al=new Multiplication();
+		//System.out.println(al.calc(10, 15));
+	 	 
+ 
+//                  add row inside database   
+
+
+				/*	person person=new person();
+				person.setName("sara");
+				session.save(person);
+				
+				
+				Data data=new Data();
+				data.setAge("20");
+				session.save(data);
+				
+				person.setData(data);
+				
+				*/
+
+
+
+	/*        delete row from database 
+	 * 
+	 * person person=new person();
+		person.setId(1);
+		person res = session.get(person.class, person.getId());
+		System.out.println("Name " + res.getName());
+		System.out.println("Age " + res.getData() .getAge() );
+		session.delete(res);
+	*/
+	
+	// second method    lambda 
+	
+	/*	calculator addition=( first, second) ->{
+			return		first*second;
+	
+		};
+		
+		System.out.println(addition.calc(14,45));
+*/
     
 
 /* 
