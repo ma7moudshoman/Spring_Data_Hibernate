@@ -1,5 +1,6 @@
 package Com.SpringData.Hibernate.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +23,23 @@ public class Data {
     @Column(name="person_age")
     private String age;
 
-   /* @OneToOne
-    @JoinColumn(name="id_person")
+    @OneToOne(mappedBy = "data" ,cascade = CascadeType.ALL)
     private person person;
-*/
+
 public Data(){
 
 }
+
+
+public person getPerson() {
+	return person;
+}
+
+
+public void setPerson(person person) {
+	this.person = person;
+}
+
 
 public int getId(){
     return id;

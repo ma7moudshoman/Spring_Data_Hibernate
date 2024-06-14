@@ -25,7 +25,7 @@ public class person {
 
 	
 	
-	@OneToOne(cascade = CascadeType.MERGE) // Refresh access all data from database
+	@OneToOne(cascade = CascadeType.MERGE) // Refresh access all data from database but  Mostly i will used all  
 	@JoinColumn(name = "data_id")
 	private Data data;
 	

@@ -50,7 +50,14 @@ SessionFactory factory=new Configuration()
     try {
 		session.beginTransaction();
 		
-	/*	
+	
+		Data d=new Data();
+		d.setId(2);
+		Data res=session.get(Data.class,d.getId());
+		System.out.println("name: " + res.getAge());
+		System.out.println("age: " + res.getPerson().getName() );
+	session.delete(res);
+		/*	
 	  
 	  
 	    add row inside database  
@@ -68,7 +75,7 @@ SessionFactory factory=new Configuration()
 		
 		*/
 		
-		person person=new person();
+	/*	person person=new person();
 		person.setId(1);
 		person res = session.get(person.class, person.getId());
 		System.out.println("Name " + res.getName());
