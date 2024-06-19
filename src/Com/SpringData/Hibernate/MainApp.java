@@ -1,7 +1,8 @@
 package Com.SpringData.Hibernate;
 
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -19,10 +20,12 @@ import com.mysql.cj.protocol.x.ContinuousOutputStream;
 
 import Com.SpringData.Hibernate.model.Client;
 import Com.SpringData.Hibernate.model.Data;
+import Com.SpringData.Hibernate.model.Info;
+import Com.SpringData.Hibernate.model.Student;
 import Com.SpringData.Hibernate.model.person;
 
 public class MainApp {
-	
+	 
 		
 		
 		
@@ -30,18 +33,11 @@ public class MainApp {
 public static void main(String[]args)  {
 
 	
-	
-
-
-
-
-
-
 SessionFactory factory=new Configuration()
 			
 			.configure("hibernate.cfg.xml")
-			.addAnnotatedClass(person.class)
-			.addAnnotatedClass(Data.class)
+			.addAnnotatedClass(Student.class)
+			.addAnnotatedClass(Info.class)
 			.buildSessionFactory();	
         	 Session session=factory.getCurrentSession();
     
@@ -51,51 +47,24 @@ SessionFactory factory=new Configuration()
 		session.beginTransaction();
 		
 	
-		Data d=new Data();
-		d.setId(2);
-		Data res=session.get(Data.class,d.getId());
-		System.out.println("name: " + res.getAge());
-		System.out.println("age: " + res.getPerson().getName() );
-	session.delete(res);
-		/*	
-	  
-	  
-	    add row inside database  
-	  
-	  person person=new person();
-		person.setName("sara");
-		session.save(person);
+		Student student= new Student();
+		student.setName("Mahmoud");
 		
+		Info info=new Info();
+		info.setPhone("01063920025");
 		
-		Data data=new Data();
-		data.setAge("20");
-		session.save(data);
+		Info info1=new Info();
+		info.setPhone("01067029393");
 		
-		person.setData(data);
-		
-		*/
-		
-	/*	person person=new person();
-		person.setId(1);
-		person res = session.get(person.class, person.getId());
-		System.out.println("Name " + res.getName());
-		System.out.println("Age " + res.getData() .getAge() );
-		res.setName("Admed");
-		res.getData().setAge("23");
-	
-	/*	
-		Data d=new Data();
-		
-		p.setId(6);
-		d.setId(0);
 
-	  
-		/*Integer id =3;
-		session.delete(p);
-		session.delete(d);
-		//session.save(p);*/
-		//session.save(person);
-		session.getTransaction().commit();
+		
+		
+		student.getInfo().add(info);
+		student.getInfo().add(info1);
+
+		session.save(student);
+		
+			session.getTransaction().commit();
 		
 		  } catch (Exception e) {
 		System.out.println(e.toString());
@@ -109,6 +78,51 @@ SessionFactory factory=new Configuration()
 
 }
     
+/*	
+Data d=new Data();
+		d.setId(2);
+		Data res=session.get(Data.class,d.getId());
+		System.out.println("name: " + res.getAge());
+		System.out.println("age: " + res.getPerson().getName() );
+	session.delete(res);
+		
+
+add row inside database  
+
+person person=new person();
+person.setName("sara");
+session.save(person);
+
+
+Data data=new Data();
+data.setAge("20");
+session.save(data);
+
+person.setData(data);
+
+*/
+
+/*	person person=new person();
+person.setId(1);
+person res = session.get(person.class, person.getId());
+System.out.println("Name " + res.getName());
+System.out.println("Age " + res.getData() .getAge() );
+res.setName("Admed");
+res.getData().setAge("23");
+
+/*	
+Data d=new Data();
+
+p.setId(6);
+d.setId(0);
+
+
+/*Integer id =3;
+session.delete(p);
+session.delete(d);
+//session.save(p);*/
+//session.save(person);
+
     
 //first method 
 
