@@ -48,20 +48,23 @@ SessionFactory factory=new Configuration()
 		
 	
 		Student student= new Student();
-		student.setName("Mahmoud");
-		
-		Info info=new Info();
-		info.setPhone("01063920025");
+		student.setName("ahmed");
 		
 		Info info1=new Info();
-		info.setPhone("01067029393");
+		info1.setPhone("01060269163");
+		
+		Info info2=new Info();
+		info2.setPhone("01015574789");
 		
 
 		
 		
-		student.getInfo().add(info);
 		student.getInfo().add(info1);
+		student.getInfo().add(info2);
 
+		info1.setStudent(student);
+		info2.setStudent(student);
+		
 		session.save(student);
 		
 			session.getTransaction().commit();
