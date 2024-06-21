@@ -28,7 +28,7 @@ public class Student {
 	private String Name;
 
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "student",fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "student",fetch = FetchType.LAZY)
 	private List<Info> info =new ArrayList();
 	
 	public Student() {

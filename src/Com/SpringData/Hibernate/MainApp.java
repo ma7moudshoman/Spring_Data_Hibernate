@@ -18,7 +18,9 @@ import org.hibernate.criterion.Restrictions;
 
 import com.mysql.cj.protocol.x.ContinuousOutputStream;
 
+import Com.SpringData.Hibernate.model.Car;
 import Com.SpringData.Hibernate.model.Client;
+import Com.SpringData.Hibernate.model.Color;
 import Com.SpringData.Hibernate.model.Data;
 import Com.SpringData.Hibernate.model.Info;
 import Com.SpringData.Hibernate.model.Student;
@@ -36,8 +38,8 @@ public static void main(String[]args)  {
 SessionFactory factory=new Configuration()
 			
 			.configure("hibernate.cfg.xml")
-			.addAnnotatedClass(Student.class)
-			.addAnnotatedClass(Info.class)
+			.addAnnotatedClass(Car.class)
+			.addAnnotatedClass(Color.class)
 			.buildSessionFactory();
 
         	 Session session=factory.getCurrentSession();
@@ -47,9 +49,24 @@ SessionFactory factory=new Configuration()
     try {
 		session.beginTransaction();
 		
-int id =2;
+		
+		
+		session.getTransaction().commit();
+		
+		
+	  } catch (Exception e) {
+	System.out.println(e.toString());
+	// TODO: handle exception
+}finally {
+	session.close();
+}  
+
+}
+
+
+}
 	
-	Student student =new Student();
+	/*Student student =new Student();
 	student=session.get(Student.class, id); 
 	 System.out.println(student.getName());
 	 System.out.println(student.getInfo().get(0).getPhone());
@@ -90,19 +107,7 @@ int id =2;
 		*/
 	//	session.save(student);
 		
-			session.getTransaction().commit();
 		
-		  } catch (Exception e) {
-		System.out.println(e.toString());
-		// TODO: handle exception
-	}finally {
-		session.close();
-	}  
-    
-}
-
-
-}
     
 /*	
 Data d=new Data();
