@@ -1,11 +1,14 @@
 package Com.SpringData.Hibernate.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,12 +28,13 @@ public class Student {
 	private String Name;
 
 	
-	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "student")
-	private Set<Info> info =new HashSet<Info>();
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "student",fetch = FetchType.EAGER)
+	private List<Info> info =new ArrayList();
 	
 	public Student() {
 		
 	}
+	
 
 	public Student(int id, String name) {
 		super();
@@ -39,15 +43,15 @@ public class Student {
 	}
 
 	
-	
-	
-	public Set<Info> getInfo() {
+	public List<Info> getInfo() {
 		return info;
 	}
 
-	public void setInfo(Set<Info> info) {
+
+	public void setInfo(List<Info> info) {
 		this.info = info;
 	}
+
 
 	public int getId() {
 		return id;

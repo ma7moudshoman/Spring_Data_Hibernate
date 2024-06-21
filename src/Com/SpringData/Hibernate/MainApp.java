@@ -38,15 +38,38 @@ SessionFactory factory=new Configuration()
 			.configure("hibernate.cfg.xml")
 			.addAnnotatedClass(Student.class)
 			.addAnnotatedClass(Info.class)
-			.buildSessionFactory();	
+			.buildSessionFactory();
+
         	 Session session=factory.getCurrentSession();
-    
+     
     
     
     try {
 		session.beginTransaction();
 		
+int id =2;
 	
+	Student student =new Student();
+	student=session.get(Student.class, id); 
+	 System.out.println(student.getName());
+	 System.out.println(student.getInfo().get(0).getPhone());
+
+	//session.delete(student);
+	
+	
+	/*
+	student.setName("sara");
+	
+	student.getInfo().get(0).setPhone("01555741364");
+	student.getInfo().get(1).setPhone("01015578974");
+	
+	session.update(student);
+	*/
+	/*System.out.println(student.getName());	
+	for(Info i : student.getInfo()) {
+		System.out.println(i.getPhone());
+	}*/
+	/*
 		Student student= new Student();
 		student.setName("ahmed");
 		
@@ -64,8 +87,8 @@ SessionFactory factory=new Configuration()
 
 		info1.setStudent(student);
 		info2.setStudent(student);
-		
-		session.save(student);
+		*/
+	//	session.save(student);
 		
 			session.getTransaction().commit();
 		
