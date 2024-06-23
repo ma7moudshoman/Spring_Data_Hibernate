@@ -31,7 +31,11 @@ public class Car {
 	@Column(name="car_name")
 	private String name;
 	
-	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@ManyToMany(cascade = { CascadeType.DETACH,
+			CascadeType.MERGE,
+			CascadeType.PERSIST,
+			CascadeType.REFRESH},
+			fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "car_color",
 			joinColumns = @JoinColumn(name= "car_id"),

@@ -49,15 +49,12 @@ SessionFactory factory=new Configuration()
     try {
 		session.beginTransaction();
 		
+		
+		
+		
 		Car car= session.get(Car.class, id);
-	//	Car car1= session.get(Car.class, id);
-		
-		
-		car.setName("car new");
-	//	car1.setName("bmw");
-		car.getColores().get(0).setName("black");
-//car.getColores().get(1).setName("green");
-		
+	
+		session.delete(car);
 		session.getTransaction().commit();
 		
 		
