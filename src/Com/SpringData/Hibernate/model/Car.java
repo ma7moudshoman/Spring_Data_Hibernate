@@ -27,10 +27,11 @@ public class Car {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="car_id")
 	private int id;
+	
 	@Column(name="car_name")
 	private String name;
 	
-	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "car_color",
 			joinColumns = @JoinColumn(name= "car_id"),
@@ -39,9 +40,36 @@ public class Car {
 	private  List<Color> colores=new ArrayList<Color>();
 	
 	
+	
+	
 	public Car() {
 		
 	}
+	
+	
+	
+
+	public Car( String name) {
+		 super();
+		this.name = name;
+	}
+
+
+
+
+	public List<Color> getColores() {
+		return colores;
+	}
+
+
+
+
+	public void setColores(List<Color> colores) {
+		this.colores = colores;
+	}
+
+
+
 
 	public int getId() {
 		return id;

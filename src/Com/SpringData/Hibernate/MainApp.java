@@ -49,6 +49,37 @@ SessionFactory factory=new Configuration()
     try {
 		session.beginTransaction();
 		
+	
+		  Car car1=new Car("car1");
+		  Car car2=new Car("car2");
+		  Car car3=new Car("car3");
+
+		  
+		  Color color1=new Color("red");
+		  Color color2=new Color("blue");
+		  Color color3=new Color("yellow");
+
+		  
+		color1.getCars().add(car1);
+		color1.getCars().add(car2);
+		color1.getCars().add(car3);
+		
+		
+		
+		color2.getCars().add(car1);
+		color2.getCars().add(car2);
+		color2.getCars().add(car3);
+		
+		
+		color3.getCars().add(car1);
+		color3.getCars().add(car2);
+		color3.getCars().add(car3);
+		
+		
+		  
+session.save(color1);
+session.save(color2);
+session.save(color3);
 		
 		
 		session.getTransaction().commit();

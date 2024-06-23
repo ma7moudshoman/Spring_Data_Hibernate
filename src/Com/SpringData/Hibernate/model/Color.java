@@ -41,6 +41,22 @@ public class Color {
 	
 	
 	
+	public Color( String name) {
+        super();
+		this.name = name;
+	}
+
+
+	public List<Car> getCars() {
+		return cars;
+	}
+
+
+	public void setCars(List<Car> cars) {
+		this.cars = cars;
+	}
+
+
 	public int getId() {
 		return id;
 	}
