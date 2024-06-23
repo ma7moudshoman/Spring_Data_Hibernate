@@ -45,14 +45,51 @@ SessionFactory factory=new Configuration()
         	 Session session=factory.getCurrentSession();
      
     
-    
+    int id =1;
     try {
 		session.beginTransaction();
 		
+		Car car= session.get(Car.class, id);
+	//	Car car1= session.get(Car.class, id);
+		
+		
+		car.setName("car new");
+	//	car1.setName("bmw");
+		car.getColores().get(0).setName("black");
+//car.getColores().get(1).setName("green");
+		
+		session.getTransaction().commit();
+		
+		
+	  } catch (Exception e) {
+	System.out.println(e.toString());
+	// TODO: handle exception
+}finally {
+	session.close();
+}  
+
+}
+
+
+}
+
+/*Color car=session.get(Color.class, id);
 	
+	session.close();
+ System.out.println(car.getName());
+ 
+   for(Car c : car.getCars()) {
+	 System.out.println(c.getName());
+  }*/
+/*
 		  Car car1=new Car("car1");
 		  Car car2=new Car("car2");
 		  Car car3=new Car("car3");
+		 
+		  
+		  session.save(car1);
+          session.save(car2);
+          session.save(car3);
 
 		  
 		  Color color1=new Color("red");
@@ -76,26 +113,11 @@ SessionFactory factory=new Configuration()
 		color3.getCars().add(car3);
 		
 		
-		  
-session.save(color1);
-session.save(color2);
-session.save(color3);
-		
-		
-		session.getTransaction().commit();
-		
-		
-	  } catch (Exception e) {
-	System.out.println(e.toString());
-	// TODO: handle exception
-}finally {
-	session.close();
-}  
-
-}
-
-
-}
+					  
+			session.save(color1);
+			session.save(color2);
+			session.save(color3);
+					*/
 	
 	/*Student student =new Student();
 	student=session.get(Student.class, id); 
